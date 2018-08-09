@@ -82,6 +82,24 @@ class plotting(object):
 		plt.ylabel('arg(|S21|)')
 		plt.legend()
 		plt.show()
+		
+	def plot_amp(self, fit=True, legend=False, clear=True):
+		'''
+		Plot the dB amplitude and fit
+		'''
+		real = self.z_data_raw.real
+		imag = self.z_data_raw.imag
+		if clear == True:
+			plt.clf()
+		plt.plot(self.f_data*1e-9,20*np.log10(np.absolute(self.z_data_raw)), 'k+', label='rawdata')
+		if fit == True:
+			plt.plot(self.f_data*1e-9,20*np.log10(np.absolute(self.z_data_sim)), 'r', label='fit')
+		plt.xlabel('f (GHz)')
+		plt.ylabel('|S21|')
+		if legend == True:
+			plt.legend()
+		plt.show()
+		
 
 class save_load(object):
 	'''
